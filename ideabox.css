@@ -88,6 +88,16 @@ p {
   float: right;
 }
 
+.quality{
+  display: inline-block;
+  font-weight: bold;
+  max-width: 150px;
+}
+
+span {
+  font-weight: normal;
+}
+
 /* Hover states */
 .vote-up:hover {
   background-image: url("upvote-hover.svg");
