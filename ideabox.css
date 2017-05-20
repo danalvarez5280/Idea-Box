@@ -68,5 +68,8 @@ p {
   color: #939598;
 }
 .delete{
+  background-image: url('delete.svg');
   float: right;
 }
+.delete:hover {
+  background-image: url('delete-hover.svg');
