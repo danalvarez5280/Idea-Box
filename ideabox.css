@@ -1,0 +1,72 @@
+#top {
+  background-color: #E5F3F2;
+  padding: 20px 0px;
+}
+
+h1{
+  color: #00A79D;
+  font-size: 50px;
+  text-align: center;
+}
+
+.title2 {
+  color: #6D6E71;
+}
+
+.idea-input{
+
+}
+
+input{
+  display: block;
+  font-size: 20px;
+  margin: 0px auto 15px auto;
+  width: 450px;
+}
+
+.save {
+  background-color: #00A79D;
+  border: none;
+  display: block;
+  color: #FFFFFF;
+  font-size: 20px;
+  margin: 0px auto 20px auto;
+  width: 450px;
+}
+
+.save:hover {
+  background-color: #045E55;
+}
+
+.search{
+  display: block;
+  font-size: 20px;
+  margin: 15px auto;
+}
+
+.idea-card{
+  margin: 10px auto;
+  padding: 10px 0px;
+  width: 450px;
+}
+
+h4 {
+  color: #6D6E71;
+  display: inline-block;
+  font-size: 24px;
+  margin-top: 0px;
+  width: 150px;
+}
+
+.card-button {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+p {
+  color: #939598;
+}
+.delete{
+  float: right;
+}
