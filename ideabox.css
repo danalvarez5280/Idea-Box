@@ -78,6 +78,7 @@ h4 {
 p {
   color: #939598;
 }
+
 .delete{
   background-image: url("delete.svg");
   cursor: pointer;
