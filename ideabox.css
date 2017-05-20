@@ -29,6 +29,7 @@ input{
   border: none;
   display: block;
   color: #FFFFFF;
+  cursor: pointer;
   font-size: 20px;
   margin: 0px auto 20px auto;
   width: 450px;
@@ -64,9 +65,34 @@ h4 {
   width: 20px;
 }
 
+.vote-up {
+  background-image: url("upvote.svg");
+  cursor: pointer;
+}
+
+.vote-down {
+  background-image: url("downvote.svg");
+  cursor: pointer;
+}
+
 p {
   color: #939598;
 }
 .delete{
+  background-image: url("delete.svg");
+  cursor: pointer;
   float: right;
+}
+
+/* Hover states */
+.vote-up:hover {
+  background-image: url("upvote-hover.svg");
+}
+
+.vote-down:hover {
+  background-image: url("downvote-hover.svg");
+}
+
+.delete:hover {
+  background-image: url("delete-hover.svg");
 }
