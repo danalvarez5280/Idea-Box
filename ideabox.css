@@ -80,7 +80,11 @@ p {
 }
 
 .delete{
-  background-image: url("delete.svg");
+  background-image: url('delete.svg');
+  float: right;
+}
+.delete:hover {
+  background-image: url('delete-hover.svg');
   cursor: pointer;
   float: right;
 }
