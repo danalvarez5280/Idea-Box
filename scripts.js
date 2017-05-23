@@ -25,20 +25,21 @@ function readyToSubmit () {
 function IdeaBox (title, body) {
   this.title = title;
   this.body = body;
+  this.quality = "swill"
   console.log(this);
 }
 
 function addIdea(idea) {
   var ideaTitle = idea.title;
   var ideaBody = idea.body;
-  i = 0;
+  var quality = idea.quality
   $('#idea-area').prepend(`<div class="idea-card">
     <h4>${ideaTitle}</h4>
     <div class="card-button delete"></div>
     <p>${ideaBody}</p>
     <div class="card-button vote-up"></div>
     <div class="card-button vote-down"></div>
-    <p class="quality">quality:<span id="quality-check" value="swill">${voteTotal[i]}</span></p>
+    <p class="quality">quality:<span id="quality-check" value="swill">${quality}</span></p>
     <hr />
   </div>`)
   $('#title').val('');
@@ -64,26 +65,24 @@ function removeIdea () {
 
 /* Up or down vote */
 
-var voteTotal = [' swill', ' plausible', ' genius'];
-var i = 0;
+$('#idea-area').on('click', '.vote-up', qualityUp)
 
-$('#idea-area').on('click', '.vote-up', function() {
-  i++;
-  minMax();
-  $(this).parent().find('#quality-check').text(voteTotal[i]);
-})
+$('#idea-area').on('click', '.vote-down', qualityDown)
 
-$('#idea-area').on('click', '.vote-down', function() {
-  i--;
-  minMax();
-  $(this).parent().find('#quality-check').text(voteTotal[i]);
-})
-
-function minMax () {
-  if (i > 2) {
-    i = 2;
+function qualityUp () {
+  var qualityElement = $(this).parent().find('#quality-check');
+  if (qualityElement.text() === "swill") {
+    qualityElement.text("plausible");
+  } else if (qualityElement.text() === "plausible") {
+    qualityElement.text("genius");
   }
-  if (i < 0) {
-    i = 0;
+}
+
+function qualityDown() {
+  var qualityElement = $(this).parent().find('#quality-check');
+  if (qualityElement.text() === "genius") {
+    qualityElement.text("plausible");
+  } else if (qualityElement.text() === "plausible") {
+    qualityElement.text("swill");
   }
 }
