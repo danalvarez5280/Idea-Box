@@ -93,13 +93,16 @@ function addIdea(idea) {
   $('#body').val('');
   $('h4, p.idea-body').attr('contenteditable', 'true');
 }
+  $('h4, p.idea-body').keydown(function(){
+    $(this).blur().next().focus();
+  })
 
 function toggleDisabled (value) {
   $('.save').attr("disabled", value);
 }
 
 function localStorageSaver(x, y) {
-  localStorage.setItem(, JSON.stringify(x));
+  localStorage.setItem("cards", JSON.stringify(x));
 }
 
 function localStorageGetter(x) {
