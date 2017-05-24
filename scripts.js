@@ -1,21 +1,26 @@
+/* Setup */
+
+// populateIdeas();
+
+/* Classes */
+
+function IdeaBox (title, body) {
+  this.title = title;
+  this.body = body;
+  this.quality = "swill";
+  this.id = Date.now();
+  console.log(this);
+}
+
+/* Event listeners */
+
 var cardNum = JSON.parse(localStorage.getItem("cardNum"));
 var myIdeas = [];
-// // function addFromLocal(){
 var savedCards = JSON.parse(localStorage.getItem("cards")) || [];
 for (var i = 0; i < savedCards.length; i++){
   addIdea(savedCards[i]);
   myIdeas.push(savedCards[i]);
 }
-// //   addIdea(savedCards);
-// // }
-// //
-// // addFromLocal();
-// //
-// // function storeIdeas () {
-//
-// }
-
-$('.save').on('click', readyToSave)
 
 function readyToSave (event) {
   event.preventDefault();
@@ -23,6 +28,27 @@ function readyToSave (event) {
   var body = $('#body').val();
   readyToSubmit();
 }
+
+$('.save').on('click', readyToSave)
+
+$('input').focus(function () {
+  toggleDisabled(false);
+})
+
+$('#idea-area').on('click', '.delete', removeIdea)
+
+$('#idea-area').on('click', '.vote-up', qualityUp)
+
+$('#idea-area').on('click', '.vote-down', qualityDown)
+
+/* Function */
+
+// function populateIdeas () {
+//   for (var i = 0; i < savedCards.length; i++){
+//     addIdea(savedCards[i]);
+//     myIdeas.push(savedCards[i]);
+//   }
+// }
 
 function readyToSubmit () {
   var title = $('#title').val();
@@ -40,16 +66,14 @@ function readyToSubmit () {
     console.log(myIdeas);
     localStorage.setItem("cards", JSON.stringify(myIdeas));
     localStorage.setItem("cardNum", JSON.stringify(cardNum));
-    $('#title').val('');
-    $('#body').val('');
+    clearInputs();
   }
 }
 
-function IdeaBox (title, body) {
-  this.title = title;
-  this.body = body;
-  this.quality = "swill";
-  console.log(this);
+
+function clearInputs () {
+  $('#title').val('');
+  $('#body').val('');
 }
 
 function addIdea(idea) {
@@ -59,7 +83,7 @@ function addIdea(idea) {
   $('#idea-area').prepend(`<div id="idea-card${idea.cardNum}" class="idea-card">
     <h4>${ideaTitle}</h4>
     <div class="card-button delete"></div>
-    <p>${ideaBody}</p>
+    <p class="idea-body">${ideaBody}</p>
     <div class="card-button vote-up"></div>
     <div class="card-button vote-down"></div>
     <p class="quality">quality:<span id="quality-check" value="swill">${quality}</span></p>
@@ -67,35 +91,32 @@ function addIdea(idea) {
   </div>`)
   $('#title').val('');
   $('#body').val('');
-  $('h4, p').attr('contenteditable', 'true');
+  $('h4, p.idea-body').attr('contenteditable', 'true');
 }
 
 function toggleDisabled (value) {
   $('.save').attr("disabled", value);
 }
 
-$('input').focus(function () {
-  toggleDisabled(false);
-})
+function localStorageSaver(x, y) {
+  localStorage.setItem(, JSON.stringify(x));
+}
 
-/*Delete button*/
-
-$('#idea-area').on('click', '.delete', removeIdea)
+function localStorageGetter(x) {
+  JSON.parse(localStorage.getItem(x)) || [];
+}
 
 function removeIdea () {
   var ideaCard = $(this).parent();
   var removeId = ideaCard.attr('id').replace('idea-card', "");
   var removeIndex = findIdeaCardIndexByCardNum(removeId);
   myIdeas.splice(removeIndex, 1);
-  localStorage.setItem("cards", JSON.stringify(myIdeas));
+  localStorageSaver(myIdeas);
+  // localStorage.setItem("cards", JSON.stringify(myIdeas));
   ideaCard.remove();
 }
 
-/* Up or down vote */
 
-$('#idea-area').on('click', '.vote-up', qualityUp)
-
-$('#idea-area').on('click', '.vote-down', qualityDown)
 
 function qualityUp () {
   var ideaCard = $(this).parent();
@@ -109,7 +130,7 @@ function qualityUp () {
     qualityElement.text("genius");
     myIdeas[updateIndex].quality = "genius";
   }
-  localStorage.setItem("cards", JSON.stringify(myIdeas));
+  localStorageSaver(myIdeas);
 }
 
 function qualityDown() {
@@ -128,12 +149,7 @@ function qualityDown() {
 }
 
 function findIdeaCardIndexByCardNum(cardId) {
-  var ideaCardIndex = -1;
-  for (var i = 0; i < myIdeas.length; i++){
-    if (myIdeas[i].cardNum == cardId){
-      ideaCardIndex = i;
-      break;
-    }
-  }
-  return ideaCardIndex;
+  return myIdeas.map(function(idea){
+    return idea.cardNum;
+  }).indexOf(parseInt(cardId));
 }
