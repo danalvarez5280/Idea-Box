@@ -1,3 +1,16 @@
+var cardNum = 0;
+var myIdeas = []
+// // function addFromLocal(){
+// //   var savedCards = JSON.parse(localStorage.getItem("cards"));
+// //   addIdea(savedCards);
+// // }
+// //
+// // addFromLocal();
+// //
+// // function storeIdeas () {
+//
+// }
+
 $('.save').on('click', readyToSave)
 
 function readyToSave (event) {
@@ -17,6 +30,9 @@ function readyToSubmit () {
   else {
     toggleDisabled(false);
     addIdea(idea);
+    myIdeas.push(idea)
+    console.log(myIdeas)
+    localStorage.setItem("cards", JSON.stringify(myIdeas))
     $('#title').val('');
     $('#body').val('');
   }
@@ -32,8 +48,9 @@ function IdeaBox (title, body) {
 function addIdea(idea) {
   var ideaTitle = idea.title;
   var ideaBody = idea.body;
-  var quality = idea.quality
-  $('#idea-area').prepend(`<div class="idea-card">
+  var quality = idea.quality;
+  cardNum++
+  $('#idea-area').prepend(`<div id="idea-card${cardNum}" class="idea-card">
     <h4>${ideaTitle}</h4>
     <div class="card-button delete"></div>
     <p>${ideaBody}</p>
