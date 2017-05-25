@@ -12,22 +12,13 @@
   <section id='top'>
     <h1>idea<span class="title2">box</span></h1>
     <form class="idea-input">
-      <input id = "title" type="text" placeholder="Title">
-      <input id = "body" type="text" placeholder="Body">
+      <input id = "title" class= "inputs" type="text" placeholder="Title">
+      <textarea id = "body" class = "inputs" rows= "4" cols= "50" wrap= "hard" placeholder="Body"></textarea>
       <button class="save" type="submit">save</button>
     </form>
   </section>
+  <input class="search inputs" type="text" placeholder="Search">
   <section id="idea-area">
-    <input class="search" type="text" placeholder="Search">
-    <div class="idea-card">
-      <h4>Example Idea</h4>
-      <div class="card-button delete"></div>
-      <p class="body-text">Some sort of text</p>
-      <div class="card-button vote-up"></div>
-      <div class="card-button vote-down"></div>
-      <p class="quality">quality:<span id="quality-check" value="swill"> Swill</span></p>
-      <hr />
-    </div>
   </section>
   <script src ='scripts.js' type='text/javascript'></script>
 </body>
