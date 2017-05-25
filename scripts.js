@@ -158,7 +158,7 @@ function qualityDown() {
 }
 
 $('.search').on('keyup', function(e){
-  var searchText = e.target.value
+  var searchText = e.target.value;
   var filteredArray = myIdeas.filter(function(idea) {
     return idea.body.includes(searchText);
   })
@@ -203,8 +203,8 @@ $('#idea-area').on('keyup blur', '.idea-body', function(e){
 
 })
 
-function bodyUpdate () {
-  var ideaCard = $(this).parent();
-  var updateId = ideaCard.attr('id').replace('idea-card', "");
-  var updateIndex = findIdeaCardIndexByCardNum(updateId);
-}
+// function bodyUpdate () {
+//   var ideaCard = $(this).parent();
+//   var updateId = ideaCard.attr('id').replace('idea-card', "");
+//   var updateIndex = findIdeaCardIndexByCardNum(updateId);
+// }
