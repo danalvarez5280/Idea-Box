@@ -75,8 +75,8 @@ function readyToSave (event) {
   readyToSubmit();
 }
 
-function localStorageSaver(x, y) {
-  localStorage.setItem("cards", JSON.stringify(x));
+function localStorageSaver(myIdeas) {
+  localStorage.setItem("cards", JSON.stringify(myIdeas));
 }
 
 function localStorageGetter(x) {
