@@ -158,9 +158,10 @@ function qualityDown() {
 }
 
 $('.search').on('keyup', function(e){
-  var searchText = e.target.value;
+  var searchText = e.target.value.toUpperCase();
   var filteredArray = myIdeas.filter(function(idea) {
-    return idea.body.includes(searchText);
+    return idea.title.toUpperCase().includes(searchText) || idea.body.toUpperCase().includes(searchText) || idea.quality.toUpperCase().includes(searchText);
+
   })
   $('#idea-area').empty()
   for (var i = 0; i < filteredArray.length; i++){
