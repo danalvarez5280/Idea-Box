@@ -160,7 +160,7 @@ function qualityDown() {
 $('.search').on('keyup', function(e){
   var searchText = e.target.value;
   var filteredArray = myIdeas.filter(function(idea) {
-    return idea.body.includes(searchText);
+    return idea.title.includes(searchText) || idea.body.includes(searchText);
   })
   $('#idea-area').empty()
   for (var i = 0; i < filteredArray.length; i++){
@@ -200,7 +200,6 @@ $('#idea-area').on('keyup blur', '.idea-body', function(e){
     myIdeas[updateIndex].body = body;
     localStorage.setItem("cards", JSON.stringify(myIdeas));
   }
-
 })
 
 // function bodyUpdate () {
